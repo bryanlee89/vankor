@@ -24,11 +24,13 @@ class Header extends Component {
 
   render() {
     return (
-      <nav style={{ marginBottom: "30px", backgroundColor: "#116cad" }}>
+      <nav style={{ marginBottom: "30px", backgroundColor: "#116cad"}}>
         <div className="nav-wrapper">
           <Link
             to={this.props.auth ? "/posts" : "/"}
-            className="left brand-logo" style={{ margin: "0 10px" }}>
+            className="left brand-logo"
+            style={{ margin: "0 10px" }}
+          >
             VanKor
           </Link>
           <ul className="right">{this.renderContent()}</ul>
