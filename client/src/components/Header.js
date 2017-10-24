@@ -26,7 +26,9 @@ class Header extends Component {
     return (
       <nav style={{ marginBottom: "30px", backgroundColor: "#116cad" }}>
         <div className="nav-wrapper">
-          <Link className="left brand-logo" style={{ margin: "0 10px" }}>
+          <Link
+            to={this.props.auth ? "/posts" : "/"}
+            className="left brand-logo" style={{ margin: "0 10px" }}>
             VanKor
           </Link>
           <ul className="right">{this.renderContent()}</ul>

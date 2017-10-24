@@ -4,6 +4,12 @@ import { connect } from "react-redux";
 import * as actions from "../actions";
 
 import Header from "./Header";
+const Landing = () => {
+  return <div>LANDING PAGE</div>;
+};
+const PostList = () => {
+  return <div>POST LIST!!</div>;
+};
 
 class App extends Component {
   componentDidMount() {
@@ -16,6 +22,8 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Header />
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/posts" component={PostList} />
           </div>
         </BrowserRouter>
       </div>
