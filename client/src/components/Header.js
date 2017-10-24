@@ -8,11 +8,21 @@ class Header extends Component {
       case null:
         return;
       case false:
-        return (
+        return [
           <li>
-            <a href="/auth/google">Login with Google</a>
+            <a className="waves-effect waves-light social-icon btn facebook">
+              <i className="fa fa-facebook" style={{ lineHeight: "38px" }} />
+            </a>
+          </li>,
+          <li>
+            <a
+              href="/auth/google"
+              className="waves-effect waves-light social-icon btn google"
+            >
+              <i className="fa fa-google" style={{ lineHeight: "38px" }} />
+            </a>
           </li>
-        );
+        ];
       default:
         return [
           <li key="1">
@@ -24,7 +34,7 @@ class Header extends Component {
 
   render() {
     return (
-      <nav style={{ marginBottom: "30px", backgroundColor: "#116cad"}}>
+      <nav style={{ marginBottom: "30px", backgroundColor: "#116cad" }}>
         <div className="nav-wrapper">
           <Link
             to={this.props.auth ? "/posts" : "/"}
