@@ -12,9 +12,6 @@ import Footer from "./Footer";
 const Landing = () => {
   return <div>LANDING PAGE</div>;
 };
-const PostList = () => {
-  return <div>POST LIST!!</div>;
-};
 
 class App extends Component {
   componentDidMount() {
@@ -27,10 +24,10 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Header />
-            <div className="row" style={{ marginBottom: "0px" }}>
+            <div className="row" style={{ marginBottom: "0px", backgroundColor: "#4c6896" }}>
               <div
-                className="col s2 indigo lighten-3 hide-on-small-only"
-                style={{ height: "100vh" }}
+                className="col s2 hide-on-small-only"
+                style={{ }}
               >
                 SIDE MENU
               </div>

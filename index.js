@@ -1,4 +1,6 @@
 const express = require("express");
+const multer = require("multer");
+const upload = multer({ dest: 'uploads/' });
 const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const passport = require("passport");

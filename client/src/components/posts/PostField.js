@@ -46,7 +46,7 @@ export default ({
       );
     case "select":
       return (
-        <div className={size}>
+        <div className={size} {...input}>
           <select>
             <option selected value="" disabled >
               Option

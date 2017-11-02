@@ -11,7 +11,7 @@ class PostForm extends Component {
       $("select").material_select();
     });
   }
-  renderMultipleItems({ fields, meta: { error, submitFailed } }) {
+  renderItemsField({ fields, meta: { error, submitFailed } }) {
     return (
       <div className="row" style={{ marginBottom: "0px" }}>
         <a
@@ -23,7 +23,7 @@ class PostForm extends Component {
         </a>
         {fields.map((item, index) => {
           return (
-            <div className="row" style={{ marginLeft: "0.25em" }}>
+            <div key={index} className="row" style={{ marginLeft: "0.25em" }}>
               <Field
                 size="input-field col s7"
                 name={`${item}.name`}
@@ -52,12 +52,12 @@ class PostForm extends Component {
     );
   }
 
-  renderFileField() {
+  renderFileField(field) {
     return (
-      <div className="file-field input-field " style={{ marginBottom: "60px" }}>
+      <div className="file-field input-field " style={{ marginBottom: "5px" }}>
         <div className="btn">
           <span>File</span>
-          <input type="file" multiple />
+          <input type="file" multiple onChange={field.input.onChange} />
         </div>
         <div className="file-path-wrapper">
           <input
@@ -91,37 +91,33 @@ class PostForm extends Component {
   }
 
   render() {
+    const { handleSubmit, onPostSubmit } = this.props;
+
     return (
       <div className="container" style={{ marginTop: "20px" }}>
-        <form onSubmit={this.props.handleSubmit(this.props.onPostSubmit)}>
+        <form onSubmit={handleSubmit(onPostSubmit)}>
           {this.renderFields()}
 
           <FieldArray
             className="row"
             name="items"
-            component={this.renderMultipleItems}
+            component={this.renderItemsField}
           />
+          <Field name="file" label="file" component={this.renderFileField} />
 
-          <Link
-            to="/posts"
-            className="red btn-flat white-text"
-            style={{ position: "absolute", left: "20px", bottom: "20px" }}
-          >
-            Cancel
-          </Link>
-
-          <button
-            className="btn waves-effect waves-light"
-            type="submit"
-            name="action"
-            style={{ position: "absolute", right: "20px", bottom: "20px" }}
-          >
-            Next
-            <i className="material-icons right">done</i>
-          </button>
-
-          {this.renderFileField()}
-
+          <div className="row">
+            <Link to="/posts" className="red btn-flat white-text" style={{}}>
+              Cancel
+            </Link>
+            <button
+              className="btn waves-effect waves-light"
+              type="submit"
+              style={{ float: "right" }}
+            >
+              Next
+              <i className="material-icons right">done</i>
+            </button>
+          </div>
         </form>
       </div>
     );

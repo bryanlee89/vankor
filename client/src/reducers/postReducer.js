@@ -1,4 +1,4 @@
-import { FETCH_ALL_POSTS, FETCH_POST } from "../actions/types";
+import { FETCH_ALL_POSTS } from "../actions/types";
 
 export default function(state = null, action) {
   switch (action.type) {
