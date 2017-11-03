@@ -114,7 +114,7 @@ class PostForm extends Component {
               type="submit"
               style={{ float: "right" }}
             >
-              Next
+              Submit
               <i className="material-icons right">done</i>
             </button>
           </div>
@@ -126,5 +126,5 @@ class PostForm extends Component {
 
 export default reduxForm({
   form: "postForm",
-  destroyOnUnmount: false
+  // destroyOnUnmount: false
 })(PostForm);

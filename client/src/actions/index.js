@@ -13,8 +13,9 @@ export const fetchAllPosts = () => async dispatch => {
   dispatch({ type: FETCH_ALL_POSTS, payload: res.data });
 };
 
-export const submitPost = data => async dispatch => {
+export const submitPost = (data, history) => async dispatch => {
   let formData = new FormData();
+
   console.log(data);
 
   Object.entries(data).forEach(([key, value]) => {
@@ -22,6 +23,9 @@ export const submitPost = data => async dispatch => {
       for (let file of value) {
         formData.append("images", file, file.name);
       }
+    } else if (key === "items") {
+      let jsonValue = JSON.stringify(value);
+      formData.append(key, jsonValue);
     } else {
       formData.append(key, value);
     }
@@ -31,9 +35,8 @@ export const submitPost = data => async dispatch => {
     headers: { "content-type": "multipart/form-data" }
   };
 
-  console.log("posting.....");
-
   const res = await axios.post("/api/posts", formData, config);
-  console.log("post successful");
+
+  history.push("/posts")
   dispatch({ type: FETCH_USER, payload: res.data });
 };

@@ -1,15 +1,19 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const ItemsSchema = require("./Item");
 
 const postSchema = new Schema({
-  _user: { type: Schema.Types.ObjectId, ref: 'User'},
+  _user: { type: Schema.Types.ObjectId, ref: "User" },
   title: String,
+  postType: String,
+  email: String,
   description: String,
-  price: Number,
+  items: [ItemsSchema],
+  phoneNumber: String,
   location: String,
-  type: String,
+  url: String,
   created_at: Date,
   upadated_at: Date
 });
 
-mongoose.model('posts', postSchema);
+mongoose.model("posts", postSchema);

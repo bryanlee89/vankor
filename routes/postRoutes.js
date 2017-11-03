@@ -1,5 +1,21 @@
-const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
+const cloudinary = require('cloudinary');
+const cloudinaryStorage = require('multer-storage-cloudinary');
+const multer = require('multer');
+const keys = require('../config/keys');
+
+cloudinary.config({
+  cloud_name: keys.cloudinaryConfig.cloud_name,
+  api_key: keys.cloudinaryConfig.api_key,
+  api_secret:  keys.cloudinaryConfig.api_secret
+})
+
+const storage = cloudinaryStorage({
+  cloudinary: cloudinary,
+  folder: process.env.NODE_ENV === 'production' ? "vankor-prod" : "vankor-dev",
+  allowedFormats: ["jpg", "png"]
+});
+
+const parser = multer({ storage: storage });
 const mongoose = require("mongoose");
 const Post = mongoose.model("posts");
 const requireLogin = require("../middlewares/requireLogin");
@@ -10,35 +26,35 @@ module.exports = app => {
     res.send(posts);
   });
 
-  app.post("/api/posts", requireLogin, upload.array('images'), async (req, res) => {
-    // const { formData } = req.body;
-    // let images = [];
-    // if (req.files) {
-    //   req.files.forEach(file => {
-    //     images.push(file.filename);
-    //   });
-    // }
-    //
-    // console.log(images);
-    //
-    // console.log("Backend", req)
-    // const post = new Post({
-    //   _user: req.user.id,
-    //   title,
-    //   description,
-    //   price,
-    //   location,
-    //   type,
-    //   created_at: Date.now()
-    // });
-    //
-    // try {
-    //   await post.save();
-    // } catch (err) {
-    //   res.status(422);
-    // }
-    console.log(req.body);
+  app.post("/api/posts", requireLogin, parser.array('images'), async (req, res) => {
+   const  { title, postType, email, description, phoneNumber, location } = req.body;
+
+   const items = JSON.parse(req.body.items);
+
+    const post = new Post({
+      _user: req.user.id,
+      title,
+      postType,
+      email,
+      description,
+      items,
+      phoneNumber,
+      location,
+      url: req.files.map(file => file.url),
+      created_at: Date.now(),
+    });
+
+    console.log("post", post)
     console.log(req.files);
+
+    try {
+      await post.save();
+    } catch (err) {
+      res.status(422);
+    }
+
+    // console.log(req.body);
+    // console.log(req.files);
     res.send(req.user);
   });
 };
