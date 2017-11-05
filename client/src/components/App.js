@@ -25,11 +25,11 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Header />
-            <div className="row" style={{ marginBottom: "0px", backgroundColor: "#4c6896" }}>
-              <div
-                className="col s2 hide-on-small-only"
-                style={{ }}
-              >
+            <div
+              className="row"
+              style={{ marginBottom: "0px", backgroundColor: "#4c6896" }}
+            >
+              <div className="col s2 hide-on-small-only" style={{}}>
                 SIDE MENU
               </div>
               <div
