@@ -5,7 +5,6 @@ import PostListElement from "./PostListElement";
 import "./PostListElement.css";
 
 class PostList extends Component {
-
   componentDidMount() {
     this.props.fetchAllPosts();
   }
@@ -13,9 +12,9 @@ class PostList extends Component {
   render() {
     //make loading page here
     if (!this.props.posts) {
-      return '';
+      return "";
     }
-    
+
     console.log("this.props.posts", this.props.posts);
     const { posts } = this.props;
     console.log(typeof posts);
