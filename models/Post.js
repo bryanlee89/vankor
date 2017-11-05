@@ -13,7 +13,8 @@ const postSchema = new Schema({
   location: String,
   url: String,
   created_at: Date,
-  upadated_at: Date
+  upadated_at: Date,
+  view_count: Number
 });
 
 mongoose.model("posts", postSchema);
