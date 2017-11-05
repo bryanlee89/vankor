@@ -1,16 +1,24 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import PostList from "./posts/PostList";
+import Pagination from "./Pagination";
+import SearchBar from "./SearchBar";
 
 const Dashboard = () => {
   return (
     <div>
-      <PostList />
-      <div className="fixed-action-btn" style={{ margin: "10px 20px", bottom: "10vh", right: "5vw" }}>
-        <Link to="/posts/new" className="btn-floating btn-large red">
-          <i className="large material-icons">add</i>
-        </Link>
+      <div className="row">
+        <div className="col s10">
+          <SearchBar />
+        </div>
+        <div className="col s2" style={{textAlign: "center", marginTop: "15px"}}>
+          <Link to="/posts/new" className="waves-effect waves-light btn-large ">
+            <i className="large material-icons">add</i>
+          </Link>
+        </div>
       </div>
+      <PostList />
+      <Pagination />
     </div>
   );
 };

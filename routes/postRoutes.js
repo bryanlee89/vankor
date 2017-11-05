@@ -23,6 +23,7 @@ const requireLogin = require("../middlewares/requireLogin");
 module.exports = app => {
   app.get("/api/posts", async (req, res) => {
     const posts = await Post.find({});
+    console.log("posts", posts)
     res.send(posts);
   });
 

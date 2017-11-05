@@ -1,0 +1,50 @@
+#user{
+  text-align: center;
+  font-size: 9px;
+  margin: 0px;
+  line-height: 0.9rem;
+}
+
+#badge {
+  float: none;
+  display: inline-block;
+  line-height: 15px;
+  font-size: 0.65rem;
+  min-width: auto;
+  height: auto;
+  margin-left: 5px;
+  cursor: pointer;
+}
+#description{
+  line-height: 1.2rem;
+  height: 30px;
+  margin: 5px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+#price {
+  line-height: 1.2rem;
+  height: 30px;
+  margin: 5px;
+  font-size: 12px
+}
+
+#views{
+  line-height: 1.2rem;
+  height: 30px;
+  margin: 5px;
+  font-size: 12px;
+}
+
+#date {
+  line-height: 1.2rem;
+  min-width: 52px;
+  margin: 0.65rem;
+  font-size: 12px;
+}
+#favorite{
+  margin-top: 0px;
+  float: right;
+  cursor: pointer;
+}

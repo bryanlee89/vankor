@@ -35,7 +35,7 @@ class App extends Component {
                 className="col s12 m10 indigo lighten-5"
                 style={{ position: "relative" }}
               >
-                <Route exact path="/" component={Landing} />
+                <Route exact path="/" component={Dashboard} />
                 <Route exact path="/posts" component={Dashboard} />
                 <Route path="/posts/new" component={PostNew} />
               </div>
