@@ -15,9 +15,7 @@ class PostList extends Component {
     if (!this.props.posts) {
       return '';
     }
-    if (this.props.posts.length === 0) {
-      return ''
-    }
+    
     console.log("this.props.posts", this.props.posts);
     const { posts } = this.props;
     console.log(typeof posts);
