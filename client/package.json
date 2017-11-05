@@ -16,6 +16,7 @@
     "jquery": "^3.2.1",
     "materialize-css": "^0.100.2",
     "materialize-social": "^1.0.3",
+    "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
@@ -30,5 +31,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "redux-immutable-state-invariant": "^2.1.0",
+    "redux-logger": "^3.0.6"
   }
 }

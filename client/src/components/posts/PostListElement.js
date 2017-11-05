@@ -1,8 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./PostListElement.css";
 
 const PostListElement = data => {
+  console.log(data);
+
   const {
     created_at,
     description,
@@ -42,7 +45,9 @@ const PostListElement = data => {
           </div>
           <div className="col s10 m6">
             <span style={{ cursor: "pointer" }}>
-              <b>{title}</b>
+              <b>
+                {title} - {phoneNumber}{" "}
+              </b>
             </span>
             <span
               className="new badge green hoverable"
@@ -94,5 +99,11 @@ const PostListElement = data => {
     </div>
   );
 };
-
+PostListElement.propTypes = {
+  created_at: PropTypes.string.isRequired,
+  phoneNumber: PropTypes.string
+};
+PostListElement.defaultProps = {
+  phoneNumber: "111111"
+};
 export default PostListElement;
