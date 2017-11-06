@@ -1,25 +1,35 @@
-import "materialize-css/";
-import "materialize-css/dist/css/materialize.min.css";
-import "materialize-social/css/style.css"
-import "materialize-social/materialize-social.css"
+import 'materialize-css/';
+import 'materialize-css/dist/css/materialize.min.css';
+import 'materialize-social/css/style.css';
+import 'materialize-social/materialize-social.css';
 
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { AppContainer } from 'react-hot-loader'; // For react-hot-loader
+import { Provider } from 'react-redux';
 
-import React from "react";
-import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
-import reduxThunk from "redux-thunk";
+import App from './components/App';
+import createStore from './store/configureStore';
 
-import App from "./components/App";
-import reducers from "./reducers";
-// import axios from 'axios';
-// window.axios = axios;
+// TODO: Set initialState
+const initialState = {};
+const store = createStore(initialState);
 
-const store = createStore(reducers, applyMiddleware(reduxThunk));
+const render = (Component) => {
+  ReactDOM.render(
+    <AppContainer>
+      <Provider store={store}>
+        <Component />
+      </Provider>
+    </AppContainer>,
+    document.getElementById('root'),
+  );
+};
+render(App);
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById("root")
-);
+if (module.hot) {
+  module.hot.accept('./components/App', () => {
+    const NextApp = require('./components/App').default;
+    render(NextApp);
+  });
+}

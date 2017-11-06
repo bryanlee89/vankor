@@ -1,36 +1,38 @@
-import axios from "axios";
-import { FETCH_USER, FETCH_ALL_POSTS, FETCH_POST } from "./types";
+import axios from 'axios';
+import * as actionTypes from './types';
 
-export const fetchUser = () => async dispatch => {
-  const res = await axios.get("/api/current_user");
+export const fetchUser = () => async (dispatch) => {
+  const res = await axios.get('/api/current_user');
 
-  dispatch({ type: FETCH_USER, payload: res.data });
+  dispatch({ type: actionTypes.FETCH_USER, payload: res.data });
 };
 
-export const fetchAllPosts = () => async dispatch => {
-  const res = await axios.get("/api/posts");
+export const fetchAllPosts = () => async (dispatch) => {
+  // TODO : Add a spinner when fetching items from server
+  // dispatch({ type: actionTypes.FETCH_POSTS_REQUEST });
+  const res = await axios.get('/api/posts');
 
-  dispatch({ type: FETCH_ALL_POSTS, payload: res.data });
+  dispatch({ type: actionTypes.FETCH_ALL_POSTS, posts: res.data });
 };
 
-export const fetchPost = (id) => async dispatch => {
-  const res = await axios.get("/api/posts/" + id);
+export const fetchPost = id => async (dispatch) => {
+  const res = await axios.get(`/api/posts/${id}`);
 
-  dispatch({ type: FETCH_POST, payload: res.data });
-}
+  dispatch({ type: actionTypes.FETCH_POST, payload: res.data });
+};
 
-export const submitPost = (data, history) => async dispatch => {
-  let formData = new FormData();
+export const submitPost = (data, history) => async (dispatch) => {
+  const formData = new FormData();
 
   console.log(data);
 
   Object.entries(data).forEach(([key, value]) => {
-    if (key === "file") {
-      for (let file of value) {
-        formData.append("images", file, file.name);
+    if (key === 'file') {
+      for (const file of value) {
+        formData.append('images', file, file.name);
       }
-    } else if (key === "items") {
-      let jsonValue = JSON.stringify(value);
+    } else if (key === 'items') {
+      const jsonValue = JSON.stringify(value);
       formData.append(key, jsonValue);
     } else {
       formData.append(key, value);
@@ -38,11 +40,11 @@ export const submitPost = (data, history) => async dispatch => {
   });
 
   const config = {
-    headers: { "content-type": "multipart/form-data" }
+    headers: { 'content-type': 'multipart/form-data' },
   };
 
-  const res = await axios.post("/api/posts", formData, config);
+  const res = await axios.post('/api/posts', formData, config);
 
-  history.push("/posts")
-  dispatch({ type: FETCH_USER, payload: res.data });
+  history.push('/posts');
+  dispatch({ type: actionTypes.FETCH_USER, payload: res.data });
 };
