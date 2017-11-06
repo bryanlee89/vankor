@@ -7,6 +7,7 @@ import * as actions from "../actions";
 import Header from "./Header";
 import Dashboard from "./Dashboard";
 import PostNew from "./posts/PostNew";
+import PostDetail from "./posts/PostDetail";
 import Footer from "./Footer";
 
 const Landing = () => {
@@ -38,6 +39,7 @@ class App extends Component {
                 <Route exact path="/" component={Dashboard} />
                 <Route exact path="/posts" component={Dashboard} />
                 <Route path="/posts/new" component={PostNew} />
+                <Route path="/posts/:id" component={PostDetail} />
               </div>
             </div>
             <Footer />

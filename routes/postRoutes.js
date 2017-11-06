@@ -27,6 +27,17 @@ module.exports = app => {
     res.send(posts);
   });
 
+  app.get("/api/posts/:id", async (req, res) => {
+    // const query = Post.where({ _id: req.params.id });
+    try {
+      const post = await Post.findById(req.params.id, {});
+      res.send(post);
+    } catch (err) {
+      res.status(404);
+      res.send({error: "Not Found"}); 
+    }
+  });
+
   app.post("/api/posts", requireLogin, parser.array('images'), async (req, res) => {
    const  { title, postType, email, description, phoneNumber, location } = req.body;
 

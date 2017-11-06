@@ -45,9 +45,9 @@ const PostListElement = data => {
           </div>
           <div className="col s10 m6">
             <span style={{ cursor: "pointer" }}>
-              <b>
-                {title} - {phoneNumber}{" "}
-              </b>
+              <a href={"/posts/" + _id}>
+                <b>{title}</b>
+              </a>
             </span>
             <span
               className="new badge green hoverable"
