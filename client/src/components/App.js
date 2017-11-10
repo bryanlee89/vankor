@@ -10,6 +10,8 @@ import PostNew from './posts/PostNew';
 import PostDetail from './posts/PostDetail';
 import Footer from './Footer';
 
+import OccupationBoardContainer from '../containers/OccupationBoardContainer';
+
 const Landing = () => <div>LANDING PAGE</div>;
 
 class App extends Component {
@@ -30,6 +32,7 @@ class App extends Component {
               <div className="col s12 m10 indigo lighten-5" style={{ position: 'relative' }}>
                 <Route exact path="/" component={Dashboard} />
                 <Route exact path="/posts" component={Dashboard} />
+                <Route exact path="/jobs" component={OccupationBoardContainer} />
                 <Route path="/posts/new" component={PostNew} />
                 <Route path="/posts/:id" component={PostDetail} />
               </div>
