@@ -10,13 +10,10 @@ import PostNew from './posts/PostNew';
 import PostDetail from './posts/PostDetail';
 import Footer from './Footer';
 
-<<<<<<< HEAD
-=======
 import OccupationBoardContainer from '../containers/OccupationBoardContainer';
 
 const Landing = () => <div>LANDING PAGE</div>;
 
->>>>>>> c9c0b74cd82300586ebc5152c43ce1832e24b8cb
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();

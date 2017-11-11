@@ -11,15 +11,10 @@ class PostList extends Component {
   }
 
   render() {
-<<<<<<< HEAD
-    //make loading page here
+    // make loading page here
     if (!this.props.posts) {
-      return "";
+      return '';
     }
-    const { posts } = this.props;
-    const postItems = posts.map((post, index) => {
-      return <PostListElement key={index} {...post} />;
-=======
     const { posts } = this.props;
     // make loading page here
     if (_.isEmpty(posts)) {
@@ -32,7 +27,6 @@ class PostList extends Component {
     const postItems = [];
     _.each(posts, (post) => {
       postItems.push(<PostListElement {...post} />);
->>>>>>> c9c0b74cd82300586ebc5152c43ce1832e24b8cb
     });
     return <div>{postItems}</div>;
   }
