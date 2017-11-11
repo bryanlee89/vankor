@@ -26,13 +26,22 @@ module.exports = app => {
     res.send(posts.reverse());
   });
 
-<<<<<<< HEAD
+  app.get("/api/posts/:id", async (req, res) => {
+    // const query = Post.where({ _id: req.params.id });
+    try {
+      const post = await Post.findById(req.params.id, {});
+      res.send(post);
+    } catch (err) {
+      res.status(404);
+      res.send({ error: "Not Found" });
+    }
+  });
+
   app.post(
     "/api/posts",
     requireLogin,
     parser.array("images"),
     async (req, res) => {
-      console.log("items: ", req.body.items);
       const {
         title,
         postType,
@@ -41,56 +50,8 @@ module.exports = app => {
         phoneNumber,
         location
       } = req.body;
-=======
-  app.get("/api/posts/:id", async (req, res) => {
-    // const query = Post.where({ _id: req.params.id });
-    try {
-      const post = await Post.findById(req.params.id, {});
-      res.send(post);
-    } catch (err) {
-      res.status(404);
-      res.send({error: "Not Found"}); 
-    }
-  });
 
-  app.post("/api/posts", requireLogin, parser.array('images'), async (req, res) => {
-   const  { title, postType, email, description, phoneNumber, location } = req.body;
-
-   const items = JSON.parse(req.body.items);
-
-    const post = new Post({
-      _user: req.user.id,
-      title,
-      postType,
-      email,
-      description,
-      items,
-      phoneNumber,
-      location,
-      url: req.files.map(file => file.url),
-      created_at: Date.now(),
-    });
-
-    console.log("post", post)
-    console.log(req.files);
-
-    try {
-      await post.save();
-    } catch (err) {
-      res.status(422);
-    }
->>>>>>> c9c0b74cd82300586ebc5152c43ce1832e24b8cb
-
-      let items;
-
-      if (req.body.items){
-        items = JSON.parse(req.body.items);
-      } else {
-        console.log("i am called")
-        items = {};
-      }
-
-      console.log("items after", items)
+      const items = JSON.parse(req.body.items);
 
       const post = new Post({
         _user: req.user.id,
@@ -105,6 +66,8 @@ module.exports = app => {
         created_at: Date.now()
       });
 
+      console.log("post", post);
+      console.log(req.files);
 
       try {
         await post.save();
