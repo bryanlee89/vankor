@@ -16,7 +16,7 @@ export const fetchAllPosts = () => async dispatch => {
 export const submitPost = (data, history) => async dispatch => {
   let formData = new FormData();
 
-  console.log(data);
+  console.log("Data", data);
 
   Object.entries(data).forEach(([key, value]) => {
     if (key === "file") {

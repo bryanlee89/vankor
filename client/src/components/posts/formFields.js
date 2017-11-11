@@ -3,7 +3,8 @@ export default [
     size: "input-field col s12 m9",
     name: "title",
     label: "Title",
-    type: "text"
+    type: "text",
+    dataLength: "30"
   },
   {
     size: "input-field col s12 m3",
@@ -16,7 +17,6 @@ export default [
     name: "email",
     label: "Email",
     type: "text",
-
   },
   {
     size: "input-field col s6 m3",
@@ -30,6 +30,7 @@ export default [
     name: "location",
     label: "Location",
     type: "text",
+    dataLength: "15"
 
   },
   {

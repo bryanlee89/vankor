@@ -9,10 +9,6 @@ import Dashboard from "./Dashboard";
 import PostNew from "./posts/PostNew";
 import Footer from "./Footer";
 
-const Landing = () => {
-  return <div>LANDING PAGE</div>;
-};
-
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();

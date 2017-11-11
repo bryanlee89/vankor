@@ -14,7 +14,7 @@ const postSchema = new Schema({
   url: String,
   created_at: Date,
   upadated_at: Date,
-  view_count: Number
+  view_count: {type: Number, default: 0}
 });
 
 mongoose.model("posts", postSchema);

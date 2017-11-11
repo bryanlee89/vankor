@@ -4,13 +4,34 @@ import { Link } from "react-router-dom";
 import PostField from "./PostField";
 import formFields from "./formFields";
 import $ from "jquery";
+import "./PostForm.css";
+import validate from './formValidate';
 
 class PostForm extends Component {
   componentDidMount() {
-    $(document).ready(function() {
-      $("select").material_select();
-    });
+    // $(document).ready(function() {
+    //   $("select").material_select();
+    //
+    // });
+    //$(this.selectTag).material_select();
+    //$(this.selectTag).on('change', this.)
   }
+
+  renderFields() {
+    const fields = formFields.map(
+      (data, index) => {
+        return (
+          <Field
+            key={index}
+            {...data}
+            component={PostField}
+            />
+        );
+      }
+    );
+    return <div className="row">{fields}</div>;
+    }
+
   renderItemsField({ fields, meta: { error, submitFailed } }) {
     return (
       <div className="row" style={{ marginBottom: "0px" }}>
@@ -70,25 +91,6 @@ class PostForm extends Component {
     );
   }
 
-  renderFields() {
-    const fields = formFields.map(
-      ({ size, name, label, type, style, placeholder }, index) => {
-        return (
-          <Field
-            key={index}
-            size={size}
-            name={name}
-            label={label}
-            type={type}
-            style={style}
-            placeholder={placeholder}
-            component={PostField}
-          />
-        );
-      }
-    );
-    return <div className="row">{fields}</div>;
-  }
 
   render() {
     const { handleSubmit, onPostSubmit } = this.props;
@@ -126,5 +128,6 @@ class PostForm extends Component {
 
 export default reduxForm({
   form: "postForm",
+  validate
   // destroyOnUnmount: false
 })(PostForm);

@@ -9,8 +9,10 @@ export default ({
   style,
   input,
   placeholder,
+  dataLength,
   meta: { error, touched }
 }) => {
+  console.log(input);
   switch (type) {
     case "text":
       return (
@@ -19,12 +21,12 @@ export default ({
             type={type}
             style={{ marginBottom: "5px" }}
             placeholder={placeholder}
+            data-length={dataLength}
             {...input}
           />
           <label htmlFor={name}>{label}</label>
           <div className="red-text" style={{ marginBottom: "20px" }}>
-            {" "}
-            {touched && error}
+            {touched && error && <span>{error}</span>}
           </div>
         </div>
       );
@@ -39,22 +41,24 @@ export default ({
           />
           <label htmlFor="textarea1">Description</label>
           <div className="red-text" style={{ marginBottom: "20px" }}>
-            {" "}
-            {touched && error}
+            {touched && error && <span>{error}</span>}
           </div>
         </div>
       );
     case "select":
       return (
-        <div className={size} {...input}>
-          <select>
-            <option selected value="" disabled >
+        <div className={size}>
+          <select  {...input} style={{ marginBottom: "5px" }}>
+            <option selected value="" disabled>
               Option
             </option>
             <option value="Buy">Buy</option>
             <option value="Sell">Sell</option>
           </select>
           <label>{label}</label>
+          <div className="red-text" style={{ marginBottom: "20px" }}>
+            {touched && error && <span>{error}</span>}
+          </div>
         </div>
       );
     default:

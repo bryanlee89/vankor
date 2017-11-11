@@ -14,14 +14,9 @@ class PostList extends Component {
     if (!this.props.posts) {
       return "";
     }
-
-    console.log("this.props.posts", this.props.posts);
     const { posts } = this.props;
-    console.log(typeof posts);
-    // console.log(posts[0].created_at)
-    // console.log(posts[0].created_at.toLocaleDateString("en-US"))
-    const postItems = this.props.posts.map(post => {
-      return <PostListElement {...post} />;
+    const postItems = posts.map((post, index) => {
+      return <PostListElement key={index} {...post} />;
     });
 
     return <div>{postItems}</div>;
