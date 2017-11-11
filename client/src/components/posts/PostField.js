@@ -1,5 +1,5 @@
-//custom post field
-import React from "react";
+// custom post field
+import React from 'react';
 
 export default ({
   size,
@@ -10,27 +10,27 @@ export default ({
   input,
   placeholder,
   dataLength,
-  meta: { error, touched }
+  meta: { error, touched },
 }) => {
   console.log(input);
   switch (type) {
-    case "text":
+    case 'text':
       return (
         <div className={size}>
           <input
             type={type}
-            style={{ marginBottom: "5px" }}
+            style={{ marginBottom: '5px' }}
             placeholder={placeholder}
             data-length={dataLength}
             {...input}
           />
           <label htmlFor={name}>{label}</label>
-          <div className="red-text" style={{ marginBottom: "20px" }}>
+          <div className="red-text" style={{ marginBottom: '20px' }}>
             {touched && error && <span>{error}</span>}
           </div>
         </div>
       );
-    case "textarea":
+    case 'textarea':
       return (
         <div className={size}>
           <textarea
@@ -40,23 +40,23 @@ export default ({
             style={style}
           />
           <label htmlFor="textarea1">Description</label>
-          <div className="red-text" style={{ marginBottom: "20px" }}>
+          <div className="red-text" style={{ marginBottom: '20px' }}>
             {touched && error && <span>{error}</span>}
           </div>
         </div>
       );
-    case "select":
+    case 'select':
       return (
-        <div className={size}>
-          <select  {...input} style={{ marginBottom: "5px" }}>
-            <option selected value="" disabled>
+        <div className={size} {...input}>
+          <select defaultValue="" style={{ marginBottom: '5px' }}>
+            <option value="" disabled>
               Option
             </option>
             <option value="Buy">Buy</option>
             <option value="Sell">Sell</option>
           </select>
           <label>{label}</label>
-          <div className="red-text" style={{ marginBottom: "20px" }}>
+          <div className="red-text" style={{ marginBottom: '20px' }}>
             {touched && error && <span>{error}</span>}
           </div>
         </div>

@@ -26,7 +26,7 @@ class PostList extends Component {
     // console.log(posts[0].created_at.toLocaleDateString("en-US"))
     const postItems = [];
     _.each(posts, (post) => {
-      postItems.push(<PostListElement {...post} />);
+      postItems.push(<PostListElement key={post.id} {...post} />);
     });
     return <div>{postItems}</div>;
   }
