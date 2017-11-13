@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 
 class OccupationBoard extends Component {
@@ -34,7 +34,6 @@ class OccupationBoard extends Component {
             this.deletePost(post);
           }}
         >
-          {' '}
           Delete this post{' '}
         </button>
         <div>Id: {post.id}</div>
@@ -54,6 +53,9 @@ class OccupationBoard extends Component {
             <SearchBar />
           </div>
           <button onClick={this.createPost}>Create post </button>
+          <Link to="/occupation/new" className="waves-effect waves-light btn-large ">
+            <i className="large material-icons">add</i>
+          </Link>
           <div className="col s2" style={{ textAlign: 'center', marginTop: '15px' }}>
             {posts.length === 0 ? 'No posts' : this.renderPosts()}
           </div>

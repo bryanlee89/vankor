@@ -9,6 +9,7 @@ const getAllPosts = (state) => {
   return allIds && allIds.length > 0 ? allIds.map(id => byId[id]) : [];
 };
 
+// TODO: Cache fetched data
 const OccupationBoardContainer = props => <OccupationBoard {...props} />;
 const mapStateToProps = (state, ownProps) => {
   const { posts } = state.occupation;

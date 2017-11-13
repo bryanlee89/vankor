@@ -1,4 +1,7 @@
+import axios from 'axios';
 import * as types from '../constants/ActionTypes';
+import { CALL_API } from '../middlewares/api';
+import { CREATE_POST } from '../constants/ActionTypes';
 
 const receivePosts = posts => ({
   type: types.RECEIVE_OCCUPATION_POSTS,
@@ -40,15 +43,20 @@ const fakeBackend = {
   },
 };
 
-export const createPost = () => (dispatch) => {
+export const createPost = postData => dispatch =>
   // TODO: Validate post data?
 
   // TODO: Call API /api/post/create
-  fakeBackend.createPost().then((post) => {
-    dispatch(createPostAction(post));
-  });
-};
-
+  axios
+    .post('/api/jobs', postData)
+    .then((result) => {
+      console.log('create result ', result);
+      dispatch(createPostAction(postData));
+    })
+    .catch((err) => {
+      console.error(' Error create ', err);
+      // TODO: dispatch error..
+    });
 export const updatePost = post => (dispatch) => {
   // fakeBackend.updatePost(post).then(() => {
   dispatch(updatePostAction(post));
